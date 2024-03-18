@@ -11,7 +11,7 @@ class WeatherSerives {
   final String apiKey = '82edd9dee7304a78aab174320241403';
   //same thing to apiKey the apikey can has expire date
   WeatherSerives({required this.dio});
-  Future<WeatherModel?> getWeather({required String cityName}) async {
+  Future<WeatherModel> getWeather({required String cityName}) async {
     try {
       //we do ? to the return datatype to tell it it can return null
       Response response = await dio.get(
@@ -29,6 +29,7 @@ class WeatherSerives {
     } catch (e) //if there was an error different the dio errors
     {
       log(e.toString());
+      throw Exception('oops there was an error');
     }
   }
 }
