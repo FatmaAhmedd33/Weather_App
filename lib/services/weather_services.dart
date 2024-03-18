@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:weather_app/models/weather_model.dart';
 
@@ -17,9 +19,16 @@ class WeatherSerives {
 
       WeatherModel weatherModel = response.data;
       return weatherModel;
-    } catch (e) {
-      return null;
-      //not the best solution but now this is the solution if the request not correct for any reason
+    } on DioException catch (e) {
+      final String errmessage =
+          e.response?.data['error']['message'] ?? 'oops, there was an error!';
+      //make this string bec when the request missing a required parameter it return an response
+      //but if the request not correct will not return anything so will but ? to tell it if it was null dont access it
+      //but if was null so the string will throw exception
+      throw Exception(errmessage);
+    } catch (e) //if there was an error different the dio errors
+    {
+      log(e.toString());
     }
   }
 }
