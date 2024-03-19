@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/services/weather_services.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -20,14 +23,19 @@ class SearchScreen extends StatelessWidget {
         child: Center(
             child: TextField(
           //to get the input and passs it to function from attribute value
-       /*   onChanged: (value) {
+          /*   onChanged: (value) {
             //in onchange every char write in textfield do Trigger on it
             // print(value); equal to log but log print the value by different color
             //but takecare about somethings to choose the log import by developer not my math
             log(value);
           },*/
-          onSubmitted: (value) {
+          onSubmitted: (value) async {
             //like on change but the different this do trigger when only end orf your text and click on buttom right
+             weatherModel =
+                await WeatherSerives(dio: Dio()).getWeather(cityName: value);
+          
+            Navigator.pop(
+                context); //to return me to home view or the page before
           },
           decoration: const InputDecoration(
             hintText: 'Enter city name',
@@ -43,3 +51,5 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
+
+WeatherModel? weatherModel;//create a global variable to can access in every file in this project

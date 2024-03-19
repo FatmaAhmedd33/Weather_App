@@ -17,7 +17,7 @@ class WeatherSerives {
       Response response = await dio.get(
           '$urlBase/forecast.json?key=$apiKey&q=$cityName&days=1&aqi=no&alerts=no');
 
-      WeatherModel weatherModel = response.data;
+      WeatherModel weatherModel = WeatherModel.fromJson(response.data);
       return weatherModel;
     } on DioException catch (e) {
       final String errmessage =
