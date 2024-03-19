@@ -18,9 +18,13 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const SearchScreen();
-              },),);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SearchScreen();
+                  },
+                ),
+              );
             },
             icon: const Icon(
               Icons.search,
@@ -29,7 +33,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      body: weatherModel==null? const NoWeatherBody() :const WeatherInfoBody(),
+      body: const NoWeatherBody(),
     );
   }
 }

@@ -31,9 +31,9 @@ class SearchScreen extends StatelessWidget {
           },*/
           onSubmitted: (value) async {
             //like on change but the different this do trigger when only end orf your text and click on buttom right
-             weatherModel =
-                await WeatherSerives(dio: Dio()).getWeather(cityName: value);
-          
+            /*  weatherModel =
+                await WeatherSerives(dio: Dio()).getWeather(cityName: value);*/ //do this becuase we dont need anymore bec. of cubit
+
             Navigator.pop(
                 context); //to return me to home view or the page before
           },
@@ -52,4 +52,5 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
-WeatherModel? weatherModel;//create a global variable to can access in every file in this project
+//WeatherModel? weatherModel;comment bec.we dont need it bec of cubit
+//create a global variable to can access in every file in this project
