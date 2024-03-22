@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/cubits/get_weather_cubit/get_wearther_cubit.dart';
 import 'package:weather_app/cubits/get_weather_cubit/get_weather_state.dart';
 import 'package:weather_app/screens/search_screen.dart';
 import 'package:weather_app/widgets/no_weather_body.dart';
@@ -35,7 +36,7 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
-        body: BlocBuilder(
+        body: BlocBuilder<GetWeatherCubit,WeatherState>(
           builder: (context, state) {
             if (state is IntialWeatherState) {
               return const NoWeatherBody();
