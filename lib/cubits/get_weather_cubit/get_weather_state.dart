@@ -1,7 +1,7 @@
 class WeatherState {}
 //CREATE PARENT CLASS TO GIVE THE CLASS OF CUBIT ACCESS FOR ALL STATES WII INHERTANCE FROM PARENT ,
 
-class NoWeatherState extends WeatherState {}
+class IntialWeatherState extends WeatherState {}
 
 class WeatherLoadedState extends WeatherState {}
 

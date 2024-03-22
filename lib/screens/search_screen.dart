@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/cubits/get_weather_cubit/get_wearther_cubit.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_services.dart';
 
@@ -33,7 +35,8 @@ class SearchScreen extends StatelessWidget {
             //like on change but the different this do trigger when only end orf your text and click on buttom right
             /*  weatherModel =
                 await WeatherSerives(dio: Dio()).getWeather(cityName: value);*/ //do this becuase we dont need anymore bec. of cubit
-
+            var getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+            getWeatherCubit.getWeather(cityName: value);
             Navigator.pop(
                 context); //to return me to home view or the page before
           },
