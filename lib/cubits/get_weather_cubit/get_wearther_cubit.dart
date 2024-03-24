@@ -6,7 +6,7 @@ import 'package:weather_app/services/weather_services.dart';
 
 class GetWeatherCubit extends Cubit<WeatherState> {
   GetWeatherCubit() : super(IntialWeatherState()); //the state of app when start
- late  WeatherModel weatherModel;
+   WeatherModel ?weatherModel;
   getWeather({required String cityName}) async {
     try {
        weatherModel =
