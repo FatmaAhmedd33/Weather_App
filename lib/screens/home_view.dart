@@ -12,8 +12,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
-    
+
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
@@ -40,11 +40,15 @@ class HomeView extends StatelessWidget {
           ],
         ),
         body: BlocBuilder<GetWeatherCubit, WeatherState>(
+          
           builder: (context, state) {
             if (state is IntialWeatherState) {
               return const NoWeatherBody();
             } else if (state is WeatherLoadedState) {
-              return  WeatherInfoBody();
+              return WeatherInfoBody(weather: state.weatherModel
+                
+               
+              );
             } else {
               return const Text('oops, there was an error');
             }

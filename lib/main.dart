@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubits/get_weather_cubit/get_wearther_cubit.dart';
+import 'package:weather_app/cubits/get_weather_cubit/get_weather_state.dart';
 import 'package:weather_app/screens/home_view.dart';
 
 void main() {
@@ -17,15 +18,21 @@ class WeatherApp extends StatelessWidget {
           GetWeatherCubit(), //know i create the cubit that i will use to child of material app
       child: Builder(
         // builder attribute get call back method
-        builder:(context)=> MaterialApp(// here i have expection bec of context in bloc provider so i have to sol frist one extract material app or wrap material app with bulider widget
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              primarySwatch: getWeatherColor(
-                  BlocProvider.of<GetWeatherCubit>(context)
-                      .weatherModel?.weatherCondition)//'?' tell it if weather model =null dont pass it to function
-              //Colors.amber //primarySwatch take material color like this value it consist of the degree of this color and use the defult color
-              ),
-          home: const HomeView(),
+        builder: (context) => BlocBuilder<GetWeatherCubit,WeatherState >(//make the material app wrap with blocbuilder bec. i want the themes rebuild after i get data
+          builder: (context, state) {
+            return MaterialApp(
+              // here i have expection bec of context in bloc provider so i have to sol frist one extract material app or wrap material app with bulider widget
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                  primarySwatch: getWeatherColor(BlocProvider.of<
+                          GetWeatherCubit>(context)
+                      .weatherModel
+                      ?.weatherCondition) //'?' tell it if weather model =null dont pass it to function
+                  //Colors.amber //primarySwatch take material color like this value it consist of the degree of this color and use the defult color
+                  ),
+              home: const HomeView(),
+            );
+          },
         ),
       ),
     );

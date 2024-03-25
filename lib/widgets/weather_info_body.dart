@@ -5,8 +5,8 @@ import 'package:weather_app/cubits/get_weather_cubit/get_wearther_cubit.dart';
 import '../models/weather_model.dart';
 
 class WeatherInfoBody extends StatelessWidget {
-  const WeatherInfoBody({Key? key}) : super(key: key);
-
+  const WeatherInfoBody({Key? key, required this.weather}) : super(key: key);
+  final WeatherModel weather;
   @override
   Widget build(BuildContext context) {
     // to access data from cubit
