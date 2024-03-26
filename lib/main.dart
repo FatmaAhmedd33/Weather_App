@@ -18,12 +18,25 @@ class WeatherApp extends StatelessWidget {
           GetWeatherCubit(), //know i create the cubit that i will use to child of material app
       child: Builder(
         // builder attribute get call back method
-        builder: (context) => BlocBuilder<GetWeatherCubit,WeatherState >(//make the material app wrap with blocbuilder bec. i want the themes rebuild after i get data
+        builder: (context) => BlocBuilder<GetWeatherCubit, WeatherState>(
+          //make the material app wrap with blocbuilder bec. i want the themes rebuild after i get data
           builder: (context, state) {
             return MaterialApp(
               // here i have expection bec of context in bloc provider so i have to sol frist one extract material app or wrap material app with bulider widget
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(
+              theme: ThemeData(//i faced a problem when apply the theme on app tha app bar color doent chang
+              //so i add app bar theme and give it color and some decoration
+                
+                appBarTheme: AppBarTheme(
+                  color:getWeatherColor(BlocProvider.of<
+                          GetWeatherCubit>(context)
+                      .weatherModel
+                      ?.weatherCondition),
+                 // iconTheme: IconThemeData(color: Colors.white),
+                  elevation: 10,
+                  //titleTextStyle: TextStyle(color: Colors.white, fontSize: 23)
+                ),
+                useMaterial3: true,
                   primarySwatch: getWeatherColor(BlocProvider.of<
                           GetWeatherCubit>(context)
                       .weatherModel

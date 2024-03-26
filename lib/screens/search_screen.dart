@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubits/get_weather_cubit/get_wearther_cubit.dart';
+import 'package:weather_app/main.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_services.dart';
 
@@ -14,14 +15,14 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+      
         title: const Text(
           "Search City",
-          style: TextStyle(color: Colors.white),
+          // style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body:  Padding(
+        padding:  EdgeInsets.all(8.0),
         child: Center(
             child: TextField(
           //to get the input and passs it to function from attribute value
@@ -40,13 +41,15 @@ class SearchScreen extends StatelessWidget {
             Navigator.pop(
                 context); //to return me to home view or the page before
           },
-          decoration: const InputDecoration(
+          decoration:  InputDecoration(
             hintText: 'Enter city name',
             suffixIcon: Icon(Icons.search),
             labelText: 'search',
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
             border: OutlineInputBorder(
-                borderSide: BorderSide() //make aborder to the text field
+                borderSide: BorderSide(
+                  color: Colors.green
+                ) //make aborder to the text field
                 ),
           ),
         )),
